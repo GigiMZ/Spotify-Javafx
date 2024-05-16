@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="596.0" style="-fx-background-color: #343434;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spotify.RegisterController">
+   <children>
+      <VBox alignment="TOP_CENTER" maxHeight="700.0" prefHeight="360.0" prefWidth="400.0" spacing="10.0" style="-fx-background-color: #121212; -fx-border-color: white;">
+         <children>
+            <Label text="Sign up to start listening" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="26.0" />
+               </font>
+            </Label>
+            <TextField fx:id="email_r" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Email" style="-fx-background-color: #121212; -fx-border-color: #878787; -fx-border-radius: 4;">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></TextField>
+            <TextField fx:id="username_r" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Username" style="-fx-background-color: #121212; -fx-border-color: #878787; -fx-border-radius: 4;" />
+            <PasswordField fx:id="password_r" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Password" style="-fx-background-color: #121212; -fx-border-color: #878787; -fx-border-radius: 4;" />
+            <DatePicker fx:id="date" maxHeight="40.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" promptText="Date of birth" style="-fx-border-color: #121212; -fx-border-color: #878787; -fx-border-radius: 4;" />
+            <Label text="Gender" textFill="#e8e8e8">
+               <VBox.margin>
+                  <Insets right="155.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <HBox alignment="TOP_CENTER" prefHeight="19.0" prefWidth="276.0" spacing="10.0">
+               <children>
+                  <RadioButton fx:id="gender_man" mnemonicParsing="false" style="-fx-border-color: #121212;" text="Man" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="gender" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="gender_woman" mnemonicParsing="false" text="Woman" textFill="WHITE" toggleGroup="$gender">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></RadioButton>
+                  <RadioButton fx:id="gender_non" mnemonicParsing="false" text="Non-binary" textFill="WHITE" toggleGroup="$gender">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></RadioButton>
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+            <Button fx:id="register" maxWidth="200.0" minHeight="36.0" minWidth="200.0" mnemonicParsing="false" onAction="#registerPressed" prefHeight="36.0" prefWidth="200.0" style="-fx-background-radius: 30; -fx-background-color: #78FF00;" text="Sing Up" />
+            <Button fx:id="login_r" mnemonicParsing="false" onAction="#loginPressed" style="-fx-background-color: #121212; -fx-border-color: white; -fx-border-radius: 30;" text="Log In" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <HBox.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </HBox.margin>
+      </VBox>
+   </children>
+</HBox>
