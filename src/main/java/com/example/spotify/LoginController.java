@@ -19,20 +19,13 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
-
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     @FXML
     private TextField username_l;
 
     @FXML
     private PasswordField password_l;
-
-    @FXML
-    private Button login;
 
     @FXML
     private Button register_l;
@@ -45,30 +38,50 @@ public class LoginController implements Initializable {
             alert.setHeaderText("Invalid Input");
             alert.setContentText("Fill every block and try again.");
             alert.showAndWait();
+            return;
         } else if (username_l.getText().length() > 30) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("Username is too long.");
             alert.showAndWait();
+            return;
         } else if (username_l.getText().length() < 2) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("Username is too short.");
             alert.showAndWait();
+            return;
         } else if (password_l.getText().length() > 50) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("password is too long.");
             alert.showAndWait();
+            return;
         } else if (password_l.getText().length() < 8) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("password is too short.");
             alert.showAndWait();
+            return;
+        }
+        if (!DBInit.checkIfUserExists(this.username_l.getText())) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Can't Log In");
+            alert.setContentText("Username or Password not found.");
+            alert.showAndWait();
+            return;
+        } else if (!DBInit.PasswordMatch(this.username_l.getText(), DBInit.hashPassword(this.password_l.getText()))) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning Dialog");
+            alert.setHeaderText("Can't Log In");
+            alert.setContentText("Username or Password not found.");
+            alert.showAndWait();
+            return;
         }
     }
     @FXML

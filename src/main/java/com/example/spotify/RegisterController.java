@@ -13,14 +13,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     @FXML
     private TextField email_r;
@@ -44,9 +43,6 @@ public class RegisterController implements Initializable {
     private RadioButton gender_non;
 
     @FXML
-    private Button register;
-
-    @FXML
     private Button login_r;
 
     @FXML
@@ -57,45 +53,57 @@ public class RegisterController implements Initializable {
             alert.setHeaderText("Invalid Input");
             alert.setContentText("Fill every block and try again.");
             alert.showAndWait();
+            return;
         }else if(username_r.getText().length() > 30) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("Username is too long.");
             alert.showAndWait();
+            return;
         } else if (username_r.getText().length() < 2) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("Username is too short.");
             alert.showAndWait();
+            return;
         }else if (password_r.getText().length() > 50) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("password is too long.");
             alert.showAndWait();
+            return;
         } else if (password_r.getText().length() < 8) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("password is too short.");
             alert.showAndWait();
+            return;
         }else if (email_r.getText().length() > 80) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("Email is too long.");
             alert.showAndWait();
+            return;
         }else if (!EmailDomainMatch(email_r.getText(), email_r.getText().indexOf("@"))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Invalid Input");
             alert.setContentText("Incorrect Email Domain.");
             alert.showAndWait();
+            return;
         }
-    }
 
+        String password_hash = DBInit.hashPassword(this.password_r.getText());
+        LocalDate date = this.date.getValue();
+        DBInit user = new DBInit(this.email_r.getText(), this.username_r.getText(), password_hash,
+                date.getDayOfMonth() +"/"+ date.getMonthValue() +"/"+ date.getYear());
+        user.addToDB();
+    }
     private static boolean EmailDomainMatch(String email, int ampersand_index) throws FileNotFoundException {
         String email_domain = email.substring(ampersand_index+1);
         BufferedReader reader = new BufferedReader(new FileReader("src/main/java/Documents/EmailDomains.txt"));
@@ -112,7 +120,6 @@ public class RegisterController implements Initializable {
         }
         return false;
     }
-
     @FXML
     private void loginPressed() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
