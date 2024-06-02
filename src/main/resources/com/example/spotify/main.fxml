@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Avatar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
@@ -28,16 +27,15 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="700.0">
                <children>
-                  <Avatar fx:id="avatar" radius="17.0">
+                  <ImageView fx:id="avatar" fitHeight="58.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@pictures/profile_picture.JPG" />
+                        <Image url="@pictures/default_avatar.jpg" />
                      </image>
                      <HBox.margin>
-                        <Insets right="5.0" />
+                        <Insets right="5.0" top="3.0" />
                      </HBox.margin>
-                  </Avatar>
-               </children>
-            </HBox>
+                  </ImageView>
+               </children></HBox>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Your Playlist">
                <font>
                   <Font name="Yu Gothic UI Semibold" size="20.0" />
@@ -115,7 +113,7 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                      <children>
-                        <ImageView fx:id="left" fitHeight="20.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="leftskip" fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@pictures/641595.png" />
                            </image>
@@ -123,12 +121,12 @@
                               <Insets right="5.0" />
                            </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="playpause" fitHeight="40.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="playpause" fitHeight="35.0" fitWidth="40.0" onMouseClicked="#play_pause" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@pictures/8029490.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="right" fitHeight="20.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="rightskip" fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@pictures/64595.png" />
                            </image>
@@ -138,11 +136,21 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Slider fx:id="slider_timeline" VBox.vgrow="SOMETIMES">
-                     <VBox.margin>
-                        <Insets bottom="15.0" />
-                     </VBox.margin>
-                  </Slider>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="current" strokeType="OUTSIDE" strokeWidth="0.0" text="0:0">
+                           <HBox.margin>
+                              <Insets right="3.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Slider fx:id="timeline" focusTraversable="false" prefHeight="14.0" prefWidth="249.0" />
+                        <Text fx:id="total" strokeType="OUTSIDE" strokeWidth="0.0" text="0:0">
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
                </children>
                <HBox.margin>
                   <Insets left="80.0" />
@@ -158,7 +166,7 @@
                         <Insets />
                      </HBox.margin>
                   </ImageView>
-                  <Slider fx:id="slider_volume" value="100.0" HBox.hgrow="NEVER">
+                  <Slider fx:id="slider_volume" focusTraversable="false" onMouseDragged="#volume_icon" value="100.0" HBox.hgrow="NEVER">
                      <HBox.margin>
                         <Insets right="8.0" />
                      </HBox.margin>
