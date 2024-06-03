@@ -5,6 +5,7 @@ module com.example.spotify {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires java.dotenv;
 
     opens com.example.spotify to javafx.fxml;
     exports com.example.spotify;
