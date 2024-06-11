@@ -9,26 +9,28 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LoginController extends RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     @FXML
-    private TextField username_l;
+    protected TextField username_l;
 
     @FXML
-    private PasswordField password_l;
+    protected PasswordField password_l;
 
     @FXML
-    private Button register_l;
+    protected Button register_l;
 
     @FXML
     private void loginPressed() throws IOException {
