@@ -46,7 +46,7 @@ public class RegisterController implements Initializable {
     private Button login_r;
 
     @FXML
-    private void registerPressed() throws FileNotFoundException {
+    private void registerPressed() throws IOException {
         if (email_r.getText().isEmpty() || username_r.getText().isEmpty() || password_r.getText().isEmpty() || date == null || !gender_man.isSelected() && !gender_woman.isSelected() && !gender_non.isSelected()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
@@ -103,6 +103,7 @@ public class RegisterController implements Initializable {
         DBInit user = new DBInit(this.email_r.getText(), this.username_r.getText(), password_hash,
                 date.getDayOfMonth() +"/"+ date.getMonthValue() +"/"+ date.getYear());
         user.addToDB();
+        toMain();
     }
     private static boolean EmailDomainMatch(String email, int ampersand_index) throws FileNotFoundException {
         String email_domain = email.substring(ampersand_index+1);
@@ -126,5 +127,20 @@ public class RegisterController implements Initializable {
         Stage window = (Stage) login_r.getScene().getWindow();
         window.setTitle("Log In");
         window.setScene(new Scene(root, 800, 700));
+    }
+
+    @FXML
+    private void toMain() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")));
+        Stage window = (Stage) login_r.getScene().getWindow();
+        window.setTitle("Spotify");
+        Scene scene = new Scene(root, 800, 560);
+        window.setScene(scene);
+        window.setMinHeight(608);
+        window.setMinWidth(816);
+        window.setMaxHeight(1080);
+        window.setMaxWidth(1920);
+        window.setScene(scene);
+        window.show();
     }
 }
