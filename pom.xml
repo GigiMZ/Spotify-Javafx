@@ -69,6 +69,16 @@
             <artifactId>charm-glisten</artifactId>
             <version>6.2.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcomponents-client</artifactId>
+            <version>4.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>java-dotenv</artifactId>
+            <version>5.2.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
