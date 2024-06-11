@@ -1,21 +1,24 @@
 package com.example.spotify;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.util.Objects;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import javafx.stage.Stage;
 
-public class MainController implements Initializable {
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
-
+public class MainController extends LoginController implements Initializable {
     @FXML
     private ImageView playpause;
 
@@ -34,6 +37,9 @@ public class MainController implements Initializable {
     private ImageView avatar;
 
     @FXML
+    private Text username;
+
+    @FXML
     private Slider timeline;
 
     @FXML
@@ -50,6 +56,15 @@ public class MainController implements Initializable {
 
     @FXML
     private Text total;
+
+    @FXML
+    private HBox home;
+
+    @FXML
+    private HBox search;
+
+    @FXML
+    private BorderPane border;
 
     @FXML
     public void play_pause() {
@@ -81,4 +96,18 @@ public class MainController implements Initializable {
         }
     }
 
+    @FXML
+    public void profile() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("profile.fxml")));
+        Stage window = (Stage) avatar.getScene().getWindow();
+        window.setTitle("Profile");
+        Scene scene = new Scene(root, 800, 560);
+        window.setScene(scene);
+        window.setMinHeight(608);
+        window.setMinWidth(816);
+        window.setMaxHeight(1080);
+        window.setMaxWidth(1920);
+        window.setScene(scene);
+        window.show();
+    }
 }
