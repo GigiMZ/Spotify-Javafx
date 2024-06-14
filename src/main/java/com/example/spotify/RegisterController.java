@@ -22,28 +22,28 @@ public class RegisterController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     @FXML
-    private TextField email_r;
+    protected TextField email_r;
 
     @FXML
-    private TextField username_r;
+    protected TextField username_r;
 
     @FXML
-    private PasswordField password_r;
+    protected PasswordField password_r;
 
     @FXML
-    private DatePicker date;
+    protected DatePicker date;
 
     @FXML
-    private RadioButton gender_man;
+    protected RadioButton gender_man;
 
     @FXML
-    private RadioButton gender_woman;
+    protected RadioButton gender_woman;
 
     @FXML
-    private RadioButton gender_non;
+    protected RadioButton gender_non;
 
     @FXML
-    private Button login_r;
+    protected Button login_r;
 
     @FXML
     private void registerPressed() throws IOException {

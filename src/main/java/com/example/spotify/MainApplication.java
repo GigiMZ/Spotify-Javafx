@@ -12,7 +12,7 @@ import java.util.Objects;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("register.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
         stage.setTitle("Register");
         Scene scene = new Scene(root, 800, 560);
         stage.setMinHeight(608);

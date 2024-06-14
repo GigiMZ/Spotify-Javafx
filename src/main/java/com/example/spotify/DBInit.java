@@ -32,14 +32,16 @@ public class DBInit {
                     "email VARCHAR(80)," +
                     "username VARCHAR(30)," +
                     "password_hash VARCHAR(64)," +
-                    "date VARCHAR(10));");
+                    "date VARCHAR(10)" +
+                    "skips SMALLINT);");
             stm.close();
 
-            PreparedStatement prpstmt = conn.prepareStatement("INSERT INTO users (email, username, password_hash, date) VALUES(?, ?, ?, ?)");
+            PreparedStatement prpstmt = conn.prepareStatement("INSERT INTO users (email, username, password_hash, date, skips) VALUES(?, ?, ?, ?, ?)");
             prpstmt.setString(1, this.email);
             prpstmt.setString(2, this.username);
             prpstmt.setString(3, this.password_hash);
             prpstmt.setString(4, this.date);
+            prpstmt.setInt(5, 4);
             prpstmt.executeUpdate();
             prpstmt.close();
             conn.close();
