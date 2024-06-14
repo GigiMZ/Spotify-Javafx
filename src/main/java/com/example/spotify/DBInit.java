@@ -3,6 +3,10 @@ package com.example.spotify;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.Objects;
+
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class DBInit {
     private String email;
     private String username;
@@ -20,21 +24,24 @@ public class DBInit {
 
     public void addToDB() {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_jdbc", "root", "E=mc2");
+            Dotenv dotenv = Dotenv.load();
+            Connection conn = DriverManager.getConnection(Objects.requireNonNull(dotenv.get("DATABASE_URL")), dotenv.get("DATABASE_USER"), dotenv.get("DATABASE_PASSWORD"));
             Statement stm = conn.createStatement();
             stm.executeUpdate("CREATE TABLE IF NOT EXISTS users(" +
                     "id INT AUTO_INCREMENT PRIMARY KEY," +
                     "email VARCHAR(80)," +
                     "username VARCHAR(30)," +
                     "password_hash VARCHAR(64)," +
-                    "date VARCHAR(10));");
+                    "date VARCHAR(10)" +
+                    "skips SMALLINT);");
             stm.close();
 
-            PreparedStatement prpstmt = conn.prepareStatement("INSERT INTO users (email, username, password_hash, date) VALUES(?, ?, ?, ?)");
+            PreparedStatement prpstmt = conn.prepareStatement("INSERT INTO users (email, username, password_hash, date, skips) VALUES(?, ?, ?, ?, ?)");
             prpstmt.setString(1, this.email);
             prpstmt.setString(2, this.username);
             prpstmt.setString(3, this.password_hash);
             prpstmt.setString(4, this.date);
+            prpstmt.setInt(5, 4);
             prpstmt.executeUpdate();
             prpstmt.close();
             conn.close();
@@ -45,7 +52,8 @@ public class DBInit {
 
     public static boolean checkIfUserExists(String username) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_jdbc", "root", "E=mc2");
+            Dotenv dotenv = Dotenv.load();
+            Connection conn = DriverManager.getConnection(Objects.requireNonNull(dotenv.get("DATABASE_URL")), dotenv.get("DATABASE_USER"), dotenv.get("DATABASE_PASSWORD"));
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT username FROM users");
             while (rs.next()) {
@@ -62,7 +70,8 @@ public class DBInit {
 
     public static boolean PasswordMatch(String username, String password_hash) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_jdbc", "root", "E=mc2");
+            Dotenv dotenv = Dotenv.load();
+            Connection conn = DriverManager.getConnection(Objects.requireNonNull(dotenv.get("DATABASE_URL")), dotenv.get("DATABASE_USER"), dotenv.get("DATABASE_PASSWORD"));
             PreparedStatement prpstmnt = conn.prepareStatement("SELECT password_hash FROM users WHERE username = ?");
             prpstmnt.setString(1, username);
             ResultSet rs = prpstmnt.executeQuery();

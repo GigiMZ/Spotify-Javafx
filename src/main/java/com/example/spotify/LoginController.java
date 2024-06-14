@@ -9,29 +9,31 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class LoginController extends RegisterController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
 
     @FXML
-    private TextField username_l;
+    protected TextField username_l;
 
     @FXML
-    private PasswordField password_l;
+    protected PasswordField password_l;
 
     @FXML
-    private Button register_l;
+    protected Button register_l;
 
     @FXML
-    private void loginPressed() {
+    private void loginPressed() throws IOException {
         if (username_l.getText().isEmpty() || password_l.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
@@ -72,17 +74,18 @@ public class LoginController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Can't Log In");
-            alert.setContentText("Username or Password not found.");
+            alert.setContentText("Invalid Username or Password.");
             alert.showAndWait();
             return;
         } else if (!DBInit.PasswordMatch(this.username_l.getText(), DBInit.hashPassword(this.password_l.getText()))) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning Dialog");
             alert.setHeaderText("Can't Log In");
-            alert.setContentText("Username or Password not found.");
+            alert.setContentText("Invalid Username or Password.");
             alert.showAndWait();
             return;
         }
+        toMain();
     }
     @FXML
     private void registerPressed() throws IOException {
@@ -90,6 +93,21 @@ public class LoginController implements Initializable {
         Stage window = (Stage) register_l.getScene().getWindow();
         window.setTitle("Sign Up");
         window.setScene(new Scene(root, 800, 700));
+    }
+
+    @FXML
+    private void toMain() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")));
+        Stage window = (Stage) register_l.getScene().getWindow();
+        window.setTitle("Spotify");
+        Scene scene = new Scene(root, 800, 560);
+        window.setScene(scene);
+        window.setMinHeight(608);
+        window.setMinWidth(816);
+        window.setMaxHeight(1080);
+        window.setMaxWidth(1920);
+        window.setScene(scene);
+        window.show();
     }
 
 }
