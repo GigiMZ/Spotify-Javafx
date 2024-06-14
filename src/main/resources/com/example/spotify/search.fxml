@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="border" maxHeight="1080.0" maxWidth="800.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spotify.SearchController">
+   <left>
+      <VBox prefHeight="380.0" prefWidth="166.0" style="-fx-background-color: #111111;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox fx:id="home" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pictures/home.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Home">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="search_b" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pictures/search-interface-symbol.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Search">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin></VBox>
+            <VBox prefHeight="468.0" prefWidth="100.0" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #1B1B1B;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="634.0">
+               <children>
+                  <ImageView fitHeight="33.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" rotate="6.2">
+                     <image>
+                        <Image url="@pictures/search-interface-symbol.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <TextField fx:id="track_search" onAction="#search" prefHeight="39.0" prefWidth="244.0" promptText="Search a Track, and click to download" style="-fx-background-color: #242424; -fx-background-radius: 20;">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox fx:id="content" prefHeight="90.0" prefWidth="634.0">
+               <children>
+                  <ImageView fitHeight="111.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Downloading">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="280.0" top="5.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="243.0">
+               <children>
+                  <Text fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                     <VBox.margin>
+                        <Insets left="5.0" top="30.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text fx:id="authors" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Authors">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin></Text>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="330.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="197.0">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <children>
+                        <ImageView fx:id="leftskip" fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pictures/641595.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <ImageView fx:id="playpause" fitHeight="35.0" fitWidth="40.0" onMouseClicked="#play_pause" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pictures/8029490.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="rightskip" fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pictures/64595.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="current" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0:0">
+                           <HBox.margin>
+                              <Insets right="3.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Slider fx:id="timeline" focusTraversable="false" prefHeight="14.0" prefWidth="249.0" />
+                        <Text fx:id="total" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0:0">
+                           <HBox.margin>
+                              <Insets left="3.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets left="80.0" />
+               </HBox.margin>
+            </VBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="volume" fitHeight="20.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@pictures/volume-up.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ImageView>
+                  <Slider fx:id="slider_volume" focusTraversable="false" onMouseDragged="#volume_icon" value="100.0" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets right="8.0" />
+                     </HBox.margin>
+                  </Slider>
+               </children>
+               <HBox.margin>
+                  <Insets left="60.0" />
+               </HBox.margin>
+            </HBox>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

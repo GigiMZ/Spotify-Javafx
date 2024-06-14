@@ -13,12 +13,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import javafx.stage.Stage;
 
-public class MainController extends LoginController implements Initializable {
+public class MainController implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
+
     @FXML
     private ImageView playpause;
 
@@ -58,7 +64,7 @@ public class MainController extends LoginController implements Initializable {
     private Text total;
 
     @FXML
-    private HBox home;
+    protected HBox home;
 
     @FXML
     private HBox search;
@@ -101,6 +107,21 @@ public class MainController extends LoginController implements Initializable {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("profile.fxml")));
         Stage window = (Stage) avatar.getScene().getWindow();
         window.setTitle("Profile");
+        Scene scene = new Scene(root, 800, 560);
+        window.setScene(scene);
+        window.setMinHeight(608);
+        window.setMinWidth(816);
+        window.setMaxHeight(1080);
+        window.setMaxWidth(1920);
+        window.setScene(scene);
+        window.show();
+    }
+
+    @FXML
+    public void toSearch() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("search.fxml")));
+        Stage window = (Stage) avatar.getScene().getWindow();
+        window.setTitle("Search");
         Scene scene = new Scene(root, 800, 560);
         window.setScene(scene);
         window.setMinHeight(608);

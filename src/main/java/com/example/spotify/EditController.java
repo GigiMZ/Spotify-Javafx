@@ -1,11 +1,13 @@
 package com.example.spotify;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -19,7 +21,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class EditController implements Initializable {
+public class EditController extends MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {}
@@ -40,7 +42,7 @@ public class EditController implements Initializable {
     private Button save;
 
     @FXML
-    private ImageView photo;
+    private ImageView avatar;
 
     @FXML
     public void cancel() throws IOException {
@@ -59,23 +61,24 @@ public class EditController implements Initializable {
 
     @FXML
     public void photo_choose() throws IOException {
+        Dotenv dotenv = Dotenv.load();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Photo File");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg"));
-        File file = fileChooser.showOpenDialog(photo.getScene().getWindow());
+        File file = fileChooser.showOpenDialog(avatar.getScene().getWindow());
         File sourceFile = new File(file.getAbsolutePath());
-        File destinationDirectory = new File("C:\\Users\\giorg\\IdeaProjects\\Spotify\\src\\main\\resources\\com\\example\\spotify\\pictures");
         Path sourcePath = sourceFile.toPath();
-        Path destinationPath = Path.of("C:\\Users\\giorg\\IdeaProjects\\Spotify\\src\\main\\resources\\com\\example\\spotify\\pictures\\avatar.jpg");
+        Path destinationPath = Path.of(dotenv.get("DIRECTORY")+"Spotify/src/main/resources/com/example/spotify/pictures/avatar.jpg");
         try {
             Files.move(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            destinationPath = Path.of("C:\\Users\\giorg\\IdeaProjects\\Spotify\\src\\main\\resources\\com\\example\\spotify\\pictures\\avatar.png");
             Files.move(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            Image image = new Image("file:///"+dotenv.get("DIRECTORY")+"Spotify/src/main/resources/com/example/spotify/pictures/avatar.jpg");
+            avatar.setImage(image);
+            System.out.println(destinationPath);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to move the file.");
         }
-        System.out.println("Invalid file.");
     }
 }

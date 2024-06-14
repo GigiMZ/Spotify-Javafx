@@ -21,14 +21,14 @@
       </Text>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ImageView fx:id="photo" fitHeight="132.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="avatar" fitHeight="132.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@pictures/avatar.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="edit_photo" mnemonicParsing="false" style="-fx-background-radius: 20;" text="Choose Photo">
+            <Button fx:id="edit_photo" mnemonicParsing="false" onAction="#photo_choose" style="-fx-background-radius: 20;" text="Choose Photo">
                <HBox.margin>
-                  <Insets left="10.0" top="10.0" />
+                  <Insets left="10.0" />
                </HBox.margin>
             </Button>
          </children>
